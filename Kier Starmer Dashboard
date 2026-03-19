@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who does the PM meet? | Keir Starmer's meetings 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+    :root {
+      --blue:        #005689;
+      --blue-dark:   #003561;
+      --blue-mid:    #4bc6df;
+      --orange:      #e05602;
+      --yellow:      #ffbb00;
+      --teal:        #22878b;
+      --green:       #5a8e00;
+      --red:         #c70000;
+      --text:        #121212;
+      --text-2:      #606060;
+      --border:      #dcdcdc;
+      --bg:          #f6f6f6;
+      --white:       #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────── */
+    .site-header {
+      background: var(--blue-dark);
+      border-top: 4px solid var(--orange);
+      padding: 20px 24px 0;
+    }
+
+    .site-header__inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .section-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 12px;
+    }
+
+    .page-headline {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 46px;
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--white);
+      max-width: 760px;
+      margin-bottom: 10px;
+    }
+
+    .page-standfirst {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 19px;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.82);
+      max-width: 680px;
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+
+    .header-byline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      padding: 12px 0;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────── */
+    .page-body {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+
+    /* ─── STAT STRIP ─────────────────────────────────── */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-bottom: 1px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      padding: 22px 20px 18px;
+      border-top: 3px solid var(--blue);
+    }
+
+    .stat-card--orange { border-top-color: var(--orange); }
+    .stat-card--teal   { border-top-color: var(--teal); }
+    .stat-card--yellow { border-top-color: var(--yellow); }
+
+    .stat-number {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--blue);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .stat-card--orange .stat-number { color: var(--orange); }
+    .stat-card--teal   .stat-number { color: var(--teal); }
+    .stat-card--yellow .stat-number { color: #b08a00; }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.35;
+    }
+
+    .stat-note {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--orange);
+      margin-top: 5px;
+    }
+
+    /* ─── CARDS ──────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      padding: 28px 28px 20px;
+    }
+
+    .card-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .card-subtitle {
+      font-size: 14px;
+      color: var(--text-2);
+      font-style: italic;
+      margin-bottom: 22px;
+      line-height: 1.35;
+    }
+
+    .card-source {
+      font-size: 11.5px;
+      color: var(--text-2);
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* full-width card */
+    .card-full {
+      margin-bottom: 1px;
+    }
+
+    /* two-col row */
+    .card-row {
+      display: grid;
+      gap: 1px;
+      background: var(--border);
+      margin-bottom: 1px;
+    }
+
+    .card-row--2col { grid-template-columns: 3fr 2fr; }
+    .card-row--equal { grid-template-columns: 1fr 1fr; }
+
+    /* ─── FINDINGS PANEL ─────────────────────────────── */
+    .findings-panel {
+      background: var(--blue-dark);
+      color: var(--white);
+      padding: 28px 24px;
+    }
+
+    .findings-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--yellow);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .finding {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .finding__rule {
+      flex-shrink: 0;
+      width: 3px;
+      background: var(--orange);
+      border-radius: 2px;
+      margin-top: 2px;
+    }
+
+    .finding strong {
+      color: var(--white);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .findings-footer {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 20px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ─── AI SPOTLIGHT ───────────────────────────────── */
+    .ai-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .ai-chip {
+      background: #eef7fc;
+      border: 1px solid var(--blue-mid);
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 3px;
+    }
+
+    .ai-chip--highlight {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+    }
+
+    /* ─── MONTH LABELS ───────────────────────────────── */
+    .month-label-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 1px;
+      margin-bottom: 1px;
+    }
+
+    .quarter-label {
+      background: var(--blue);
+      color: rgba(255,255,255,0.7);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 5px;
+    }
+
+    /* ─── CHART CONTAINERS ───────────────────────────── */
+    .chart-wrap { position: relative; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 800px) {
+      .stat-strip        { grid-template-columns: repeat(2, 1fr); }
+      .card-row--2col,
+      .card-row--equal   { grid-template-columns: 1fr; }
+      .page-headline     { font-size: 32px; }
+      .stat-number       { font-size: 40px; }
+    }
+
+    @media (max-width: 500px) {
+      .stat-strip { grid-template-columns: 1fr 1fr; }
+      .page-headline { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════ HEADER ══ -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <span class="section-badge">Data &amp; Politics</span>
+    <h1 class="page-headline">Who does the PM meet?</h1>
+    <p class="page-standfirst">An analysis of Sir Keir Starmer's 110 recorded external meetings from January to September 2025 – business leaders, bereaved families, AI companies and the press</p>
+    <div class="header-byline">
+      Source: Cabinet Office ministerial transparency data, GOV.UK &nbsp;·&nbsp; Q1–Q3 2025 &nbsp;·&nbsp; Q4 data not yet published
+    </div>
+  </div>
+</header>
+
+<div class="page-body">
+
+  <!-- ════ STAT STRIP ════════════════════════════════ -->
+  <div class="stat-strip">
+    <div class="stat-card">
+      <span class="stat-number">110</span>
+      <span class="stat-label">External meetings recorded in 2025 (Jan–Sep)</span>
+    </div>
+    <div class="stat-card stat-card--orange">
+      <span class="stat-number">19</span>
+      <span class="stat-label">Meetings in February – the busiest single month</span>
+      <span class="stat-note">↑ Southport, AI &amp; Washington trip</span>
+    </div>
+    <div class="stat-card stat-card--teal">
+      <span class="stat-number">36%</span>
+      <span class="stat-label">of all meetings were with business &amp; investment figures</span>
+    </div>
+    <div class="stat-card stat-card--yellow">
+      <span class="stat-number">12</span>
+      <span class="stat-label">distinct AI &amp; tech companies met in person or by call</span>
+    </div>
+  </div>
+
+  <!-- ════ MONTHLY TIMELINE ══════════════════════════ -->
+  <div class="card card-full">
+    <h2 class="card-title">Meeting frequency by month</h2>
+    <p class="card-subtitle">Number of external meetings held by the Prime Minister each month, January to September 2025</p>
+    <div class="month-label-strip">
+      <div class="quarter-label">Q1 · Jan – Mar</div>
+      <div class="quarter-label">Q2 · Apr – Jun</div>
+      <div class="quarter-label">Q3 · Jul – Sep</div>
+    </div>
+    <div class="chart-wrap" style="height: 260px; margin-top: 8px;">
+      <canvas id="monthlyChart"></canvas>
+    </div>
+    <p class="card-source">Cabinet Office transparency publications, GOV.UK. Orange bar = busiest month; grey bar = quietest.</p>
+  </div>
+
+  <!-- ════ CATEGORY + FINDINGS ══════════════════════ -->
+  <div class="card-row card-row--2col">
+    <div class="card">
+      <h2 class="card-title">What were the meetings about?</h2>
+      <p class="card-subtitle">Meetings categorised by primary theme, January–September 2025</p>
+      <div class="chart-wrap" style="height: 330px;">
+        <canvas id="categoryChart"></canvas>
+      </div>
+      <p class="card-source">Categories assigned by analysis of published meeting purposes.</p>
+    </div>
+    <div class="findings-panel">
+      <div class="findings-title">Key findings</div>
+      <div class="finding">
+        <div class="finding__rule"></div>
+        <div>
+          <strong>Business leads the diary</strong>
+          More than a third of all recorded meetings were with corporate leaders, investors or trade representatives — from JPMorgan and BlackRock to JLR and AstraZeneca.
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding__rule"></div>
+        <div>
+          <strong>AI is a genuine priority</strong>
+          Starmer met Anthropic, Mistral, Scale AI, Apple, Meta, Google DeepMind, Nvidia, Microsoft and Amazon individually — 12 AI and tech firms in nine months.
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding__rule"></div>
+        <div>
+          <strong>Victims families: 20 meetings</strong>
+          Southport (5 meetings), Hillsborough (4), Nottingham attack families, Bicester fire, World Central Kitchen and others.
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding__rule"></div>
+        <div>
+          <strong>Media editors granted access</strong>
+          The Sun, Mirror, Times, Independent, Guardian, LBC, BBC and News Corp all held meetings with the PM.
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding__rule"></div>
+        <div>
+          <strong>August near-shutdown</strong>
+          Only three meetings recorded in August — the Lady Chief Justice, Gaza medics and Baroness May on modern slavery.
+        </div>
+      </div>
+      <div class="findings-footer">Data covers Q1–Q3 2025. Q4 not yet published.</div>
+    </div>
+  </div>
+
+  <!-- ════ SECTORS + QUARTERLY ══════════════════════ -->
+  <div class="card-row card-row--equal">
+    <div class="card">
+      <h2 class="card-title">Business sectors in the room</h2>
+      <p class="card-subtitle">Breakdown of business &amp; investment meetings by industry sector</p>
+      <div class="chart-wrap" style="height: 300px;">
+        <canvas id="sectorChart"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <h2 class="card-title">Quarterly comparison</h2>
+      <p class="card-subtitle">Meeting totals per quarter — Q4 data not yet published</p>
+      <div class="chart-wrap" style="height: 300px;">
+        <canvas id="quarterlyChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ TOP RECURRING CONTACTS ═══════════════════ -->
+  <div class="card card-full">
+    <h2 class="card-title">Organisations that appeared most often</h2>
+    <p class="card-subtitle">Groups or individuals recorded in the PM's meetings register more than once, January–September 2025. <span style="color: var(--orange); font-style: normal; font-weight: 600;">Orange = victims &amp; families</span></p>
+    <div class="chart-wrap" style="height: 300px;">
+      <canvas id="recurringChart"></canvas>
+    </div>
+    <p class="card-source">Southport and Hillsborough families appeared as separate meetings on multiple dates, reflecting ongoing engagement with victims and campaigners.</p>
+  </div>
+
+  <!-- ════ AI SPOTLIGHT ════════════════════════════ -->
+  <div class="card-row card-row--2col" style="margin-bottom: 0;">
+    <div class="card">
+      <h2 class="card-title">The AI &amp; tech companies met</h2>
+      <p class="card-subtitle">Every distinct AI or technology company the PM met in 2025, in order of date</p>
+      <div class="ai-grid">
+        <span class="ai-chip ai-chip--highlight">Mistral AI</span>
+        <span class="ai-chip">Meta</span>
+        <span class="ai-chip ai-chip--highlight">Scale AI</span>
+        <span class="ai-chip">Apple</span>
+        <span class="ai-chip ai-chip--highlight">Anthropic</span>
+        <span class="ai-chip">Mastercard (AI)</span>
+        <span class="ai-chip ai-chip--highlight">Google DeepMind</span>
+        <span class="ai-chip">Relativity Space</span>
+        <span class="ai-chip ai-chip--highlight">Nvidia</span>
+        <span class="ai-chip">Amazon</span>
+        <span class="ai-chip ai-chip--highlight">Google</span>
+        <span class="ai-chip">Microsoft</span>
+      </div>
+      <p class="card-source" style="margin-top: 20px;">Dark chips = pure AI companies. Meetings spanned Jan–Sep 2025 across all three quarters.</p>
+    </div>
+    <div class="card">
+      <h2 class="card-title">Where were the US trade meetings?</h2>
+      <p class="card-subtitle">Meetings explicitly linked to UK-US trade talks, by quarter</p>
+      <div class="chart-wrap" style="height: 220px; margin-bottom: 8px;">
+        <canvas id="tradeChart"></canvas>
+      </div>
+      <p class="card-source">Includes Washington roundtables (Feb), sector-specific trade meetings (Apr–May) and G7 investment discussions (Jun).</p>
+    </div>
+  </div>
+
+</div><!-- /page-body -->
+
+<script>
+  // ── Unregister datalabels globally so we opt-in per chart ──
+  // (chart.js loads it globally via the CDN plugin)
+  Chart.unregister(ChartDataLabels);
+
+  const G = {
+    blue:     '#005689',
+    blueDark: '#003561',
+    blueMid:  '#4bc6df',
+    orange:   '#e05602',
+    yellow:   '#ffbb00',
+    teal:     '#22878b',
+    green:    '#5a8e00',
+    red:      '#c70000',
+    grey:     '#dcdcdc',
+    text2:    '#606060',
+  };
+
+  const defaultFont = {
+    family: "'Inter', -apple-system, sans-serif",
+    size: 13,
+  };
+
+  Chart.defaults.font = { ...Chart.defaults.font, ...defaultFont };
+  Chart.defaults.color = '#606060';
+
+  // ── shared axis styles ──────────────────────────────
+  const xAxis = {
+    grid: { color: '#f0f0f0' },
+    border: { display: false },
+    ticks: { font: defaultFont },
+  };
+  const yAxisClean = {
+    grid: { display: false },
+    border: { display: false },
+    ticks: { font: defaultFont },
+  };
+
+  // ════════════════════════════════════════════════════
+  // 1. MONTHLY BAR CHART
+  // ════════════════════════════════════════════════════
+  new Chart(document.getElementById('monthlyChart'), {
+    type: 'bar',
+    plugins: [ChartDataLabels],
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      datasets: [{
+        data: [14, 19, 14, 11, 12, 16, 12, 3, 9],
+        backgroundColor: [
+          G.blue, G.orange, G.blue,
+          G.blue, G.blue,  G.blue,
+          G.blue, G.grey,  G.blue,
+        ],
+        borderRadius: 2,
+        borderSkipped: false,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: { label: ctx => ` ${ctx.raw} meetings` },
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: ctx => ctx.dataIndex === 1 ? G.orange : (ctx.dataIndex === 7 ? '#aaa' : G.blue),
+          font: { weight: '700', size: 13 },
+          formatter: v => v,
+        },
+      },
+      scales: {
+        x: { grid: { display: false }, border: { display: false } },
+        y: {
+          ...xAxis,
+          max: 26,
+          ticks: { stepSize: 5 },
+        },
+      },
+      layout: { padding: { top: 24 } },
+    },
+  });
+
+  // ════════════════════════════════════════════════════
+  // 2. CATEGORY DOUGHNUT
+  // ════════════════════════════════════════════════════
+  new Chart(document.getElementById('categoryChart'), {
+    type: 'doughnut',
+    data: {
+      labels: [
+        'Business & Investment',
+        'Public Interest & Victims',
+        'Government & Policy',
+        'Media',
+        'AI & Technology',
+        'Charity & Social',
+        'Unions & Workers',
+      ],
+      datasets: [{
+        data: [40, 20, 15, 13, 10, 8, 4],
+        backgroundColor: [G.blue, G.orange, G.teal, G.yellow, G.blueMid, G.green, '#9e6b00'],
+        borderColor: '#ffffff',
+        borderWidth: 3,
+        hoverOffset: 8,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '58%',
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: {
+            padding: 14,
+            font: { size: 13 },
+            boxWidth: 13,
+            boxHeight: 13,
+          },
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.label}: ${ctx.raw} meetings`,
+          },
+        },
+      },
+    },
+  });
+
+  // ════════════════════════════════════════════════════
+  // 3. SECTOR HORIZONTAL BAR
+  // ════════════════════════════════════════════════════
+  new Chart(document.getElementById('sectorChart'), {
+    type: 'bar',
+    plugins: [ChartDataLabels],
+    data: {
+      labels: [
+        'Finance & Banking',
+        'Tech (non-AI)',
+        'Manufacturing & Auto',
+        'Pharma & Life Sciences',
+        'Energy & Infrastructure',
+        'Retail & Consumer',
+      ],
+      datasets: [{
+        data: [9, 8, 8, 6, 5, 4],
+        backgroundColor: [G.blue, G.teal, G.orange, G.green, G.yellow, G.blueMid],
+        borderRadius: 2,
+        borderSkipped: false,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.raw} meetings` } },
+        datalabels: {
+          anchor: 'end',
+          align: 'right',
+          color: G.text2,
+          font: { weight: '600', size: 13 },
+          formatter: v => v,
+        },
+      },
+      scales: {
+        x: { ...xAxis, max: 13, ticks: { stepSize: 3 } },
+        y: yAxisClean,
+      },
+      layout: { padding: { right: 24 } },
+    },
+  });
+
+  // ════════════════════════════════════════════════════
+  // 4. QUARTERLY BAR
+  // ════════════════════════════════════════════════════
+  new Chart(document.getElementById('quarterlyChart'), {
+    type: 'bar',
+    plugins: [ChartDataLabels],
+    data: {
+      labels: ['Q1\nJan–Mar', 'Q2\nApr–Jun', 'Q3\nJul–Sep', 'Q4\nOct–Dec'],
+      datasets: [{
+        data: [47, 39, 24, null],
+        backgroundColor: [G.blue, G.blue, G.blue, G.grey],
+        borderRadius: 2,
+        borderSkipped: false,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.raw != null ? ` ${ctx.raw} meetings` : ' Not yet published',
+          },
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: ctx => ctx.dataIndex === 3 ? '#aaa' : G.blue,
+          font: { weight: '700', size: 14 },
+          formatter: (v, ctx) => v != null ? v : '—',
+        },
+      },
+      scales: {
+        x: { grid: { display: false }, border: { display: false } },
+        y: { ...xAxis, max: 58 },
+      },
+      layout: { padding: { top: 28 } },
+    },
+  });
+
+  // ════════════════════════════════════════════════════
+  // 5. RECURRING CONTACTS
+  // ════════════════════════════════════════════════════
+  const recurringLabels = [
+    'Southport families & survivors',
+    'Hillsborough families',
+    'Victoria Newton (The Sun)',
+    'Cheryl Pratt-Korbel',
+    'AstraZeneca',
+    'Nissan',
+    'HSBC',
+    'Comcast',
+    'JLR',
+    'Blackstone',
+    'Mission 44',
+  ];
+  const recurringData  = [5, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+  const recurringColors = recurringLabels.map(l =>
+    ['Southport families & survivors', 'Hillsborough families', 'Cheryl Pratt-Korbel'].includes(l)
+      ? G.orange : G.blue
+  );
+
+  new Chart(document.getElementById('recurringChart'), {
+    type: 'bar',
+    plugins: [ChartDataLabels],
+    data: {
+      labels: recurringLabels,
+      datasets: [{
+        data: recurringData,
+        backgroundColor: recurringColors,
+        borderRadius: 2,
+        borderSkipped: false,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.raw} appearances` } },
+        datalabels: {
+          anchor: 'end',
+          align: 'right',
+          color: ctx => recurringColors[ctx.dataIndex] === G.orange ? G.orange : G.blue,
+          font: { weight: '700', size: 13 },
+          formatter: v => v,
+        },
+      },
+      scales: {
+        x: { ...xAxis, max: 7, ticks: { stepSize: 1 } },
+        y: { ...yAxisClean, ticks: { font: { size: 13 } } },
+      },
+      layout: { padding: { right: 24 } },
+    },
+  });
+
+  // ════════════════════════════════════════════════════
+  // 6. US TRADE MEETINGS (small stacked bar)
+  // ════════════════════════════════════════════════════
+  new Chart(document.getElementById('tradeChart'), {
+    type: 'bar',
+    plugins: [ChartDataLabels],
+    data: {
+      labels: ['Q1 (Jan–Mar)', 'Q2 (Apr–Jun)', 'Q3 (Jul–Sep)'],
+      datasets: [{
+        label: 'US trade / investment meetings',
+        data: [4, 8, 2],
+        backgroundColor: [G.blue, G.orange, G.teal],
+        borderRadius: 2,
+        borderSkipped: false,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.raw} trade/investment meetings` } },
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: ctx => [G.blue, G.orange, G.teal][ctx.dataIndex],
+          font: { weight: '700', size: 14 },
+          formatter: v => v,
+        },
+      },
+      scales: {
+        x: { grid: { display: false }, border: { display: false } },
+        y: { ...xAxis, max: 12, ticks: { stepSize: 2 } },
+      },
+      layout: { padding: { top: 24 } },
+    },
+  });
+</script>
+
+</body>
+</html>
